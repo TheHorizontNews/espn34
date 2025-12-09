@@ -1,0 +1,1870 @@
+/* ========== RESET & BASE ========== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #102030 0, #020810 45%, #010409 100%);
+  color: #f5f7ff;
+  line-height: 1.6;
+}
+
+/* Scrollbar */
+body::-webkit-scrollbar {
+  width: 8px;
+}
+body::-webkit-scrollbar-track {
+  background: #050910;
+}
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00ff7a, #9f4dff);
+  border-radius: 999px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* UTILS */
+.section-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.section-subtitle {
+  color: #a7b3cc;
+  max-width: 640px;
+  margin-bottom: 1.75rem;
+}
+
+/* BUTTONS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, #00ff7a, #9f4dff);
+  color: #02040a;
+  box-shadow: 0 0 18px rgba(0, 255, 122, 0.5);
+}
+
+.btn.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 24px rgba(159, 77, 255, 0.6);
+}
+
+.btn.ghost {
+  background: rgba(5, 14, 25, 0.8);
+  border-color: rgba(144, 162, 204, 0.5);
+  color: #e5ebff;
+}
+
+.btn.ghost:hover {
+  border-color: #00ff7a;
+  box-shadow: 0 0 12px rgba(0, 255, 122, 0.4);
+}
+
+.btn.small {
+  padding: 0.35rem 0.9rem;
+  font-size: 0.78rem;
+}
+
+/* ========== NEW UI ELEMENTS ========== */
+
+/* Casino Logo Styles */
+.casino-logo {
+  max-width: 120px;
+  height: 40px;
+  object-fit: contain;
+  filter: brightness(1.1);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.casino-logo:hover {
+  transform: scale(1.05);
+  filter: brightness(1.3);
+}
+
+/* Логотипы казино в таблице */
+.casino-logo-small {
+  width: 140px;
+  height: 110px;
+  object-fit: contain;
+  border-radius: 16px;
+  padding: 12px 16px;
+  background: radial-gradient(circle at 20% 0, rgba(120, 255, 177, 0.35), rgba(6, 14, 32, 1));
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.casino-logo-large {
+  max-width: 180px;
+  height: 60px;
+}
+
+/* Stats Cards */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin: 1.5rem 0;
+}
+
+.stat-card {
+  background: radial-gradient(circle at 0 0, rgba(0, 255, 122, 0.1), rgba(3, 12, 26, 0.95));
+  border: 1px solid rgba(143, 164, 214, 0.6);
+  border-radius: 18px;
+  padding: 1.3rem 1.2rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 255, 122, 0.3);
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00ff7a, #9f4dff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.3rem;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #a7b3cc;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Content Cards with Images */
+.content-card {
+  background: radial-gradient(circle at 0 0, rgba(0, 255, 122, 0.08), rgba(3, 12, 26, 0.96));
+  border: 1px solid rgba(143, 164, 214, 0.5);
+  border-radius: 20px;
+  padding: 1.8rem 1.6rem;
+  margin: 1.5rem 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.content-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(159, 77, 255, 0.15), transparent 70%);
+  pointer-events: none;
+}
+
+.content-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  position: relative;
+  z-index: 1;
+}
+
+.content-card p {
+  color: #c3cff5;
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
+}
+
+.content-with-image {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2rem;
+  align-items: center;
+}
+
+.content-image {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+.content-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.content-image:hover img {
+  transform: scale(1.05);
+}
+
+/* Enhanced SEO Block */
+.seo-content-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.seo-card {
+  background: radial-gradient(circle at 50% 0, rgba(0, 255, 122, 0.12), rgba(3, 12, 26, 0.96));
+  border: 1px solid rgba(143, 164, 214, 0.6);
+  border-radius: 24px;
+  padding: 2rem 2.5rem;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.seo-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  background: linear-gradient(135deg, #00ff7a, #9f4dff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.seo-card p {
+  color: #c3cff5;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.seo-card ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.seo-card ul li {
+  padding-left: 1.5rem;
+  margin-bottom: 0.6rem;
+  position: relative;
+  color: #c3cff5;
+}
+
+.seo-card ul li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #00ff7a;
+  font-weight: 700;
+}
+
+/* Feature Highlights */
+.feature-highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin: 1.8rem 0;
+}
+
+.feature-item {
+  background: linear-gradient(135deg, rgba(5, 15, 30, 0.9), rgba(10, 25, 45, 0.9));
+  border: 1px solid rgba(143, 164, 214, 0.5);
+  border-radius: 16px;
+  padding: 1.5rem 1.3rem;
+  transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-3px);
+  border-color: #00ff7a;
+  box-shadow: 0 8px 24px rgba(0, 255, 122, 0.3);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+.feature-item h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #e5ebff;
+}
+
+.feature-item p {
+  font-size: 0.9rem;
+  color: #a7b3cc;
+  line-height: 1.6;
+}
+
+/* Progress Indicators */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(5, 15, 30, 0.9);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+  margin: 0.5rem 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ff7a, #9f4dff);
+  border-radius: 999px;
+  transition: width 1s ease;
+  box-shadow: 0 0 12px rgba(0, 255, 122, 0.6);
+}
+
+/* Badges & Tags */
+.badge-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  border: 1px solid;
+}
+
+.badge.success {
+  background: rgba(0, 255, 122, 0.15);
+  border-color: rgba(0, 255, 122, 0.5);
+  color: #8ce7b9;
+}
+
+.badge.info {
+  background: rgba(21, 119, 255, 0.15);
+  border-color: rgba(21, 119, 255, 0.5);
+  color: #7eb7ff;
+}
+
+.badge.warning {
+  background: rgba(255, 215, 0, 0.15);
+  border-color: rgba(255, 215, 0, 0.5);
+  color: #ffd84a;
+}
+
+/* ========== HEADER ========== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(3, 8, 18, 0.92);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(86, 106, 148, 0.4);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.logo-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 0.9rem;
+  background: radial-gradient(circle at 20% 0, #00ff7a, #1577ff);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.8rem;
+  color: #020409;
+  box-shadow: 0 0 12px rgba(0, 255, 122, 0.5);
+}
+
+.logo-text {
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  font-size: 0.96rem;
+}
+
+/* NAV */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 1.25rem;
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  color: #cad5f5;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00ff7a, #9f4dff);
+  transition: width 0.18s ease;
+  border-radius: 999px;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* HAMBURGER */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  width: 20px;
+  height: 2px;
+  background: #e5ebff;
+  border-radius: 999px;
+}
+
+/* ========== HERO ========== */
+.hero {
+  padding: 3.5rem 0 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -180px;
+  background:
+    radial-gradient(circle at 0 0, rgba(0, 255, 122, 0.12), transparent 55%),
+    radial-gradient(circle at 100% 0, rgba(159, 77, 255, 0.14), transparent 55%);
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+  gap: 2.5rem;
+  align-items: center;
+  z-index: 1;
+}
+
+.hero-text h1 {
+  font-size: clamp(2.1rem, 3vw, 2.7rem);
+  margin-bottom: 0.75rem;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #8ce7b9;
+  margin-bottom: 0.45rem;
+}
+
+.hero-subtitle {
+  color: #a7b3cc;
+  max-width: 540px;
+  margin-bottom: 1.4rem;
+}
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-badges span {
+  font-size: 0.78rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(8, 22, 36, 0.9);
+  border: 1px solid rgba(142, 255, 205, 0.4);
+}
+
+/* FILTERS */
+.filters-title {
+  font-size: 0.86rem;
+  margin-bottom: 0.35rem;
+  color: #c0ccf0;
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chip {
+  border-radius: 999px;
+  background: rgba(5, 15, 26, 0.95);
+  border: 1px solid rgba(135, 156, 208, 0.7);
+  padding: 0.35rem 0.9rem;
+  font-size: 0.78rem;
+  cursor: pointer;
+  color: #d8e1ff;
+  transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.12s ease;
+}
+
+.chip:hover {
+  border-color: #00ff7a;
+  box-shadow: 0 0 10px rgba(0, 255, 122, 0.4);
+}
+
+.chip.active {
+  background: linear-gradient(135deg, rgba(0, 255, 122, 0.2), rgba(159, 77, 255, 0.35));
+  border-color: #00ff7a;
+}
+
+/* HERO RIGHT CARD */
+.hero-highlight {
+  position: relative;
+}
+
+.card-glow {
+  position: absolute;
+  inset: -30px;
+  background:
+    radial-gradient(circle at 20% 0, rgba(0, 255, 122, 0.35), transparent 60%),
+    radial-gradient(circle at 80% 100%, rgba(159, 77, 255, 0.45), transparent 65%);
+  filter: blur(12px);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.hero-card {
+  position: relative;
+  background: radial-gradient(circle at 0 0, rgba(0, 255, 146, 0.12), rgba(3, 10, 24, 0.96));
+  border-radius: 24px;
+  padding: 1.6rem 1.5rem 1.4rem;
+  border: 1px solid rgba(142, 255, 205, 0.4);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
+}
+
+.hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(151, 98, 255, 0.4);
+  mix-blend-mode: screen;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.hero-card-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #9be9ff;
+  margin-bottom: 0.4rem;
+}
+
+.hero-card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.hero-card-text {
+  font-size: 0.92rem;
+  color: #d5e0ff;
+  margin-bottom: 0.9rem;
+}
+
+.hero-card-list {
+  list-style: none;
+  font-size: 0.84rem;
+  color: #c3cff5;
+  margin-bottom: 1rem;
+}
+
+.hero-card-list li + li {
+  margin-top: 0.3rem;
+}
+
+.hero-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 0.7rem;
+}
+
+.hero-disclaimer {
+  font-size: 0.7rem;
+  color: #9bacd2;
+}
+
+/* ========== TOP 3 CARDS ========== */
+.top3 {
+  padding: 1.2rem 0 2.4rem;
+}
+
+.top3-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.casino-card {
+  position: relative;
+  background: radial-gradient(circle at 0 0, rgba(0, 255, 122, 0.18), rgba(3, 12, 26, 0.95));
+  border-radius: 20px;
+  padding: 1.25rem 1.1rem 1.1rem;
+  border: 1px solid rgba(143, 164, 214, 0.5);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
+}
+
+.badge.rank {
+  position: absolute;
+  top: 0.9rem;
+  right: 1rem;
+  background: linear-gradient(135deg, #ffd84a, #ff8a3c);
+  border-radius: 999px;
+  padding: 0.18rem 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #2f2000;
+}
+
+.casino-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+
+.casino-card p {
+  font-size: 0.9rem;
+  color: #cad4ff;
+  margin-bottom: 0.8rem;
+}
+
+.pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.9rem;
+}
+
+.pill-list li {
+  list-style: none;
+  font-size: 0.78rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(5, 18, 35, 0.9);
+  border: 1px solid rgba(165, 200, 255, 0.5);
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ========== RANKING TABLE (tournament-style) ========== */
+.ranking {
+  padding: 2.4rem 0 2.7rem;
+}
+
+.table-wrapper {
+  width: 100%;
+  margin-top: 1.2rem;
+  border-radius: 24px;
+  padding: 0.8rem 0.6rem 0.9rem;
+  background: radial-gradient(circle at 0 0, rgba(0, 255, 122, 0.06), rgba(3, 10, 24, 0.96));
+  border: 1px solid rgba(119, 142, 201, 0.7);
+  overflow-x: auto;      /* больше НЕ hidden, чтобы не обрезало справа */
+  overflow-y: visible;
+}
+
+.ranking-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  font-size: 0.86rem;
+  table-layout: auto;    /* даём браузеру самому распределять ширину */
+}
+
+/* компактные ширины колонок */
+.ranking-table th:nth-child(1),
+.ranking-table td:nth-child(1) {
+  width: 48px;
+}
+
+.cell-rank {
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #8fffd0;
+}
+.ranking-table th:nth-child(2),
+.ranking-table td:nth-child(2) {
+  width: 230px;          /* бренд + логотип */
+}
+
+.ranking-table th:nth-child(8),
+.ranking-table td:nth-child(8) {
+  width: 150px;          /* колонки с кнопками */
+}
+
+/* остальные колонки (3–7) дадим распределиться автоматически */
+
+.ranking-table thead {
+  background: transparent;
+}
+
+.ranking-table th {
+  padding: 0.65rem 0.6rem;
+  color: #c0cef6;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.ranking-table th:first-child {
+  text-align: center;
+}
+
+.ranking-table th:nth-child(3),
+.ranking-table th:nth-child(4),
+.ranking-table th:nth-child(5) {
+  text-align: center;
+}
+
+/* чуть меньше паддинги — таблица становится компактнее */
+.ranking-table th,
+.ranking-table td {
+  padding: 0.7rem 0.6rem;
+}
+
+.ranking-table td {
+  text-align: left;
+  vertical-align: middle;
+  font-size: 0.88rem;
+}
+
+.ranking-table td:first-child {
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.95rem;   /* было крупнее — теперь аккуратнее */
+  color: #8fffd0;
+}
+
+/* числовые колонки по центру */
+.ranking-table td:nth-child(3),
+.ranking-table td:nth-child(4),
+.ranking-table td:nth-child(5) {
+  text-align: center;
+}
+
+/* Стиль строк с эффектом капсул */
+.ranking-table tbody tr {
+  background: linear-gradient(90deg, #050d1c 0%, #09172a 70%, #050d1c 100%);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+  position: relative;
+  transition: transform 0.14s ease, box-shadow 0.14s ease, background 0.14s ease, opacity 0.12s ease;
+}
+
+/* цветная полоска сверху строки — делаем её короче,
+   чтобы левая часть не казалась такой растянутой */
+.ranking-table tbody tr::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 4px;
+  width: 18%;  /* было ~28%, теперь “дорожка” короче */
+  background: linear-gradient(90deg, #00ff7a, #9f4dff);
+  border-radius: 999px 0 999px 0;
+  opacity: 0.8;
+}
+
+.ranking-table tbody tr td:first-child {
+  border-radius: 999px 0 0 999px;
+}
+
+.ranking-table tbody tr td:last-child {
+  border-radius: 0 999px 999px 0;
+}
+
+.ranking-table tbody tr:hover {
+  background: linear-gradient(90deg, #071528 0%, #0d223b 70%, #071528 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.75);
+}
+
+/* Ячейка бренда в таблице */
+.cell-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;     /* убираем жёсткий min-width, чтобы всё влезало */
+}
+
+/* Логотипы — чуть меньше, чтобы не раздували колонку */
+.casino-logo-small {
+  width: 72px;
+  height: 52px;
+  object-fit: contain;
+  border-radius: 14px;
+  padding: 8px 10px;
+  background: radial-gradient(circle at 20% 0, rgba(120, 255, 177, 0.35), rgba(6, 14, 32, 1));
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.brand-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brand-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.brand-tag {
+  font-size: 0.75rem;
+  opacity: 0.75;
+}
+
+/* Описание "Ideal para" */
+.cell-ideal {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.cell-actions {
+  white-space: nowrap;
+}
+
+/* Бейджи в таблице */
+.rating-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.rating-badge strong {
+  color: #00ff7a;
+  font-size: 1rem;
+}
+
+.bonus-text,
+.deposit-text,
+.games-text {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: #c3cff5;
+}
+
+.games-text {
+  line-height: 1.5;
+}
+
+/* extra rows (11–20) hidden by default */
+.ranking-table tr.extra-row {
+  display: none;
+}
+
+.table-wrapper.show-extra .ranking-table tr.extra-row {
+  display: table-row;
+}
+
+
+
+/* ========== CLUSTERS ========== */
+.clusters {
+  padding: 2.4rem 0 2.7rem;
+}
+
+.cluster-grid {
+  margin-top: 1.3rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.1rem;
+}
+
+.cluster-card {
+  position: relative;
+  padding: 1rem 1rem 1.2rem;
+  border-radius: 18px;
+  background: radial-gradient(circle at 0 0, rgba(0, 255, 122, 0.12), rgba(3, 12, 26, 0.96));
+  border: 1px solid rgba(130, 156, 214, 0.6);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+}
+
+.cluster-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+}
+
+.cluster-card p {
+  font-size: 0.9rem;
+  color: #c6d2ff;
+  margin-bottom: 0.6rem;
+}
+
+.cluster-link {
+  font-size: 0.8rem;
+  color: #7ef4b1;
+}
+
+.cluster-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+  border-color: #00ff7a;
+}
+
+/* ========== SEO TEXT ========== */
+.seo-text {
+  padding: 2.4rem 0 2.5rem;
+}
+
+.seo-text h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.seo-text h3 {
+  font-size: 1.05rem;
+  margin-top: 1.3rem;
+  margin-bottom: 0.4rem;
+}
+
+.seo-text p {
+  color: #c3cff5;
+  margin-bottom: 0.7rem;
+  max-width: 880px;
+}
+
+/* ========== FAQ ========== */
+.faq {
+  padding: 2.5rem 0 3rem;
+}
+
+.faq-list {
+  margin-top: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.faq-item {
+  border-radius: 14px;
+  background: rgba(5, 14, 30, 0.96);
+  border: 1px solid rgba(126, 148, 206, 0.6);
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 0.75rem 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  cursor: pointer;
+  color: #e2e7ff;
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.faq-icon {
+  font-size: 1.1rem;
+  color: #8fffd0;
+}
+
+.faq-answer {
+  padding: 0 0.9rem 0.8rem;
+  font-size: 0.9rem;
+  color: #c3cff5;
+  display: none;
+}
+
+.faq-item.open .faq-answer {
+  display: block;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+}
+
+.faq-disclaimer {
+  margin-top: 0.9rem;
+  font-size: 0.78rem;
+  color: #95a2cb;
+}
+
+/* ========== FOOTER ========== */
+.site-footer {
+  padding: 1.8rem 0 2rem;
+  border-top: 1px solid rgba(90, 114, 170, 0.6);
+  background: radial-gradient(circle at top, rgba(0, 255, 122, 0.08), rgba(3, 10, 20, 0.98));
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr;
+  gap: 1.5rem;
+  align-items: flex-start;
+  font-size: 0.85rem;
+}
+
+.footer-logo {
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.footer-text {
+  color: #b2bfe8;
+  max-width: 360px;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+}
+
+.footer-links a {
+  color: #c0cef6;
+  font-size: 0.84rem;
+}
+
+.footer-links a:hover {
+  color: #8fffd0;
+}
+
+.footer-right {
+  text-align: right;
+  color: #aebbe5;
+}
+
+/* ========== RESPONSIVE ========== */
+
+/* MOBILE RESPONSIVE - КАРТОЧНЫЙ ВИД */
+@media (max-width: 900px) {
+  .table-wrapper {
+    padding: 0.4rem 0.4rem;
+  }
+
+  /* Скрываем заголовки таблицы */
+  .ranking-table thead {
+    display: none;
+  }
+
+  /* Убираем table-row для tbody и tr */
+  .ranking-table,
+  .ranking-table tbody {
+    display: block;
+    border-spacing: 0;
+  }
+
+  /* Превращаем каждую строку в карточку */
+  .ranking-table tbody tr {
+    display: block;
+    background: linear-gradient(135deg, #071020 0%, #0a1930 100%);
+    border-radius: 16px;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(143, 164, 214, 0.5);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+    position: relative;
+  }
+
+  .ranking-table tbody tr::before {
+    display: none;
+  }
+
+  /* Все td становятся блоками */
+  .ranking-table tbody tr td {
+    display: block;
+    padding: 0 !important;
+    text-align: left !important;
+    border: none !important;
+    border-radius: 0 !important;
+  }
+
+  /* Номер казино как badge в углу */
+  .ranking-table tbody tr td:first-child {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #00ff7a;
+    background: rgba(0, 255, 122, 0.15);
+    border: 1px solid rgba(0, 255, 122, 0.5);
+    border-radius: 999px;
+    padding: 0.3rem 0.7rem;
+    width: auto;
+  }
+
+  /* Логотип и название казино */
+  .ranking-table tbody tr .cell-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-right: 3.5rem;
+    min-width: auto;
+  }
+
+  .ranking-table tbody tr .cell-brand .casino-logo-small {
+    width: 70px !important;
+    height: 70px !important;
+    flex-shrink: 0;
+  }
+
+  .ranking-table tbody tr .cell-brand .brand-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .ranking-table tbody tr .cell-brand .brand-name {
+    font-size: 1.05rem;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .ranking-table tbody tr .cell-brand .brand-tag {
+    font-size: 0.7rem;
+    opacity: 0.8;
+    display: block;
+  }
+
+  /* Оценка */
+  .ranking-table tbody tr td:nth-child(3) {
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.8rem !important;
+    border-bottom: 1px solid rgba(143, 164, 214, 0.3) !important;
+  }
+
+  .ranking-table tbody tr td:nth-child(3)::before {
+    content: 'Puntuación: ';
+    color: #9fb0e3;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .rating-badge {
+    font-size: 0.95rem;
+  }
+
+  /* Бонус */
+  .ranking-table tbody tr td:nth-child(4) {
+    margin-bottom: 0.6rem;
+  }
+
+  .ranking-table tbody tr td:nth-child(4)::before {
+    content: 'Bono: ';
+    color: #9fb0e3;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline;
+    margin-right: 0.3rem;
+  }
+
+  /* Минимальный депозит */
+  .ranking-table tbody tr td:nth-child(5) {
+    margin-bottom: 0.6rem;
+  }
+
+  .ranking-table tbody tr td:nth-child(5)::before {
+    content: 'Min. Depósito: ';
+    color: #9fb0e3;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline;
+    margin-right: 0.3rem;
+  }
+
+  /* Игры */
+  .ranking-table tbody tr td:nth-child(6) {
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.8rem !important;
+    border-bottom: 1px solid rgba(143, 164, 214, 0.3) !important;
+  }
+
+  .ranking-table tbody tr td:nth-child(6)::before {
+    content: 'Juegos: ';
+    color: #9fb0e3;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .games-text {
+    line-height: 1.6;
+    font-size: 0.85rem;
+  }
+
+  /* Ideal para */
+  .ranking-table tbody tr .cell-ideal {
+    margin-bottom: 1rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: #cad4ff;
+    padding: 0.7rem;
+    background: rgba(0, 255, 122, 0.08);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 255, 122, 0.2);
+    min-width: auto;
+  }
+
+  .ranking-table tbody tr .cell-ideal::before {
+    content: '💡 Ideal para: ';
+    color: #00ff7a;
+    font-weight: 600;
+    font-size: 0.75rem;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  /* Кнопки действий */
+  .ranking-table tbody tr .cell-actions {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+    white-space: normal;
+  }
+
+  .ranking-table tbody tr .cell-actions .btn {
+    flex: 1;
+    text-align: center;
+    padding: 0.55rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 960px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 1.1fr);
+  }
+
+  .hero-highlight {
+    order: -1;
+    margin-bottom: 1.7rem;
+  }
+
+  .top3-grid,
+  .cluster-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer-inner {
+    grid-template-columns: 1.6fr 1.4fr;
+  }
+
+  .footer-right {
+    text-align: left;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  /* New UI elements responsive */
+  .content-with-image {
+    grid-template-columns: 1fr;
+  }
+
+  .content-image {
+    max-width: 400px;
+    margin: 1rem auto;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .feature-highlights {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .seo-card {
+    padding: 1.5rem 1.5rem;
+  }
+
+  .nav-links {
+    position: absolute;
+    right: 16px;
+    top: 52px;
+    background: rgba(5, 14, 30, 0.98);
+    border-radius: 12px;
+    padding: 0.6rem 0.9rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    min-width: 190px;
+    border: 1px solid rgba(110, 135, 198, 0.7);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 0.16s ease, transform 0.16s ease;
+  }
+
+  .main-nav.open .nav-links {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 720px) {
+  .top3-grid,
+  .cluster-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .table-wrapper {
+    border-radius: 18px;
+    padding-inline: 0.2rem;
+  }
+
+  /* Бонус и депозит показываются в карточном виде */
+  
+  /* Убираем фиксированные ширины на мобиле */
+  .ranking-table {
+    table-layout: auto;
+  }
+  
+  .ranking-table th,
+  .ranking-table td {
+    width: auto !important;
+  }
+  
+  .footer-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* New UI mobile improvements */
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-highlights {
+    grid-template-columns: 1fr;
+  }
+
+  .seo-card {
+    padding: 1.2rem 1.2rem;
+  }
+
+  .stat-value {
+    font-size: 1.6rem;
+  }
+
+  .casino-logo {
+    max-width: 100px;
+    height: 35px;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero {
+    padding-top: 3rem;
+  }
+
+  .hero-card {
+    padding: 1.3rem 1.1rem 1.1rem;
+  }
+
+  .hero-card-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-inner {
+    padding-inline: 0;
+  }
+
+  .cell-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .extra-toggle-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* ========== BRAND PAGE GENERIC ========== */
+
+.brand-hero {
+  padding: 3rem 0 2.2rem;
+  position: relative;
+}
+
+.brand-hero-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.2fr);
+  gap: 2.4rem;
+  align-items: center;
+}
+
+.brand-hero::before {
+  content: "";
+  position: absolute;
+  inset: -180px;
+  background:
+    radial-gradient(circle at 0 0, rgba(0, 255, 122, 0.16), transparent 55%),
+    radial-gradient(circle at 100% 0, rgba(159, 77, 255, 0.18), transparent 55%);
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+.brand-tagline {
+  color: #c3cff5;
+  margin-bottom: 1.2rem;
+  max-width: 640px;
+}
+
+.info-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.info-chip {
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(143, 167, 220, 0.7);
+  background: rgba(6, 16, 32, 0.96);
+  font-size: 0.78rem;
+}
+
+.info-chip .chip-label {
+  display: block;
+  color: #9fb0e3;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.info-chip .chip-value {
+  font-weight: 600;
+}
+
+.brand-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 0.7rem;
+}
+
+/* HERO RIGHT SCORE CARD */
+.brand-hero-card {
+  position: relative;
+}
+
+.brand-card-glow {
+  position: absolute;
+  inset: -32px;
+  background:
+    radial-gradient(circle at 20% 0, rgba(0, 255, 122, 0.35), transparent 60%),
+    radial-gradient(circle at 80% 100%, rgba(159, 77, 255, 0.45), transparent 65%);
+  filter: blur(14px);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.brand-score-card {
+  position: relative;
+  border-radius: 24px;
+  padding: 1.5rem 1.4rem 1.3rem;
+  background: radial-gradient(circle at 0 0, rgba(0, 255, 146, 0.16), rgba(3, 10, 24, 0.97));
+  border: 1px solid rgba(142, 255, 205, 0.5);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
+}
+
+.brand-score-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #9be9ff;
+  margin-bottom: 0.6rem;
+}
+
+.brand-score-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.brand-score-title {
+  font-size: 0.86rem;
+  color: #c8d5ff;
+}
+
+.brand-score-number {
+  font-size: 2.1rem;
+  font-weight: 700;
+}
+
+.brand-score-sub {
+  font-size: 0.8rem;
+  color: #9fb0e3;
+}
+
+.brand-score-meter {
+  flex: 1;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(7, 20, 40, 0.9);
+  overflow: hidden;
+  position: relative;
+}
+
+.brand-score-meter .meter-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 92%; /* визуально ~9.7/10 */
+  background: linear-gradient(90deg, #00ff7a, #9f4dff);
+  box-shadow: 0 0 16px rgba(0, 255, 122, 0.6);
+}
+
+.brand-score-list {
+  list-style: none;
+  font-size: 0.84rem;
+  color: #d5e1ff;
+  margin-bottom: 0.8rem;
+}
+
+.brand-score-list li + li {
+  margin-top: 0.35rem;
+}
+
+.brand-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.brand-badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(167, 196, 255, 0.7);
+  background: rgba(5, 16, 34, 0.96);
+}
+
+/* SECTIONS */
+.brand-section {
+  padding: 2.4rem 0 2.3rem;
+}
+
+.brand-section h2 {
+  font-size: 1.7rem;
+  margin-bottom: 0.7rem;
+}
+
+.brand-section p {
+  color: #c3cff5;
+  max-width: 880px;
+}
+
+/* GRID TWO */
+.grid-two {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.2fr);
+  gap: 1.6rem;
+  margin-top: 1.2rem;
+}
+
+.brand-facts h3,
+.pros-cons h3 {
+  margin-bottom: 0.6rem;
+}
+
+.brand-facts dl {
+  font-size: 0.9rem;
+}
+
+.fact-row {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr);
+  gap: 0.35rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px dashed rgba(112, 134, 196, 0.6);
+}
+
+.fact-row dt {
+  color: #9fb0e3;
+}
+
+.fact-row dd {
+  color: #dde4ff;
+}
+
+/* PROS & CONS */
+.pros-cons {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.pros,
+.cons {
+  border-radius: 18px;
+  padding: 1rem 1rem 1rem;
+  background: rgba(5, 14, 30, 0.96);
+  border: 1px solid rgba(126, 148, 206, 0.7);
+}
+
+.pros-list,
+.cons-list {
+  list-style: none;
+  font-size: 0.88rem;
+  color: #cfd8ff;
+}
+
+.pros-list li + li,
+.cons-list li + li {
+  margin-top: 0.4rem;
+}
+
+/* GAMES */
+.games-grid {
+  margin-top: 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.1rem;
+}
+
+.game-card {
+  border-radius: 18px;
+  padding: 1rem 1rem 1rem;
+  background: radial-gradient(circle at 0 0, rgba(0, 255, 122, 0.12), rgba(5, 15, 32, 0.96));
+  border: 1px solid rgba(130, 156, 214, 0.7);
+}
+
+.game-card h3 {
+  margin-bottom: 0.4rem;
+}
+
+.game-card p {
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+}
+
+.game-card ul {
+  list-style: disc;
+  padding-left: 1.1rem;
+  font-size: 0.86rem;
+  color: #d3ddff;
+}
+
+/* PAYMENTS */
+.payments-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  margin-top: 0.2rem;
+}
+
+.payments-table th,
+.payments-table td {
+  padding: 0.55rem 0.6rem;
+  text-align: left;
+}
+
+.payments-table thead {
+  background: rgba(6, 18, 36, 0.98);
+}
+
+.payments-table th {
+  color: #c0cef6;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+}
+
+.payments-table tbody tr:nth-child(odd) {
+  background: rgba(5, 14, 30, 0.96);
+}
+
+.payments-table tbody tr:nth-child(even) {
+  background: rgba(6, 18, 36, 0.96);
+}
+
+.payments-text {
+  font-size: 0.9rem;
+  color: #cdd7ff;
+}
+
+.payments-text h3 {
+  margin-bottom: 0.45rem;
+}
+
+/* SUPPORT & FINAL CTA */
+.support-list {
+  margin-top: 0.7rem;
+  list-style: none;
+  font-size: 0.9rem;
+  color: #cdd7ff;
+}
+
+.support-list li + li {
+  margin-top: 0.3rem;
+}
+
+.brand-final-cta {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+/* BRAND FAQ */
+.brand-faq {
+  padding-top: 2.2rem;
+}
+
+/* RESPONSIVE BRAND PAGE */
+@media (max-width: 960px) {
+  .brand-hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .brand-hero-card {
+    order: -1;
+    margin-bottom: 1.6rem;
+  }
+
+  .grid-two {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pros-cons {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .games-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .games-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .brand-hero {
+    padding-top: 3rem;
+  }
+}
+/* ==== HOTFIX: нормальная колонка # в таблице рейтинга ==== */
+
+/* убираем огромный полукруг/линию, которая рисуется поверх строки */
+.ranking-table tbody tr::before {
+  display: none !important;
+}
+
+/* сами строки оставляем как аккуратные капсулы */
+.ranking-table tbody tr {
+  background: linear-gradient(90deg, #050d1c 0%, #09172a 70%, #050d1c 100%) !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+  border-radius: 999px;
+}
+
+/* первая колонка под # — узкая, только под цифру */
+.ranking-table th:nth-child(1),
+.ranking-table td:nth-child(1) {
+  width: 48px !important;
+  max-width: 48px !important;
+}
+
+/* цифра ранга по центру, без лишних отступов */
+.ranking-table td:nth-child(1),
+.ranking-table td.cell-rank {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+  text-align: center !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #00ff7a;
+}
